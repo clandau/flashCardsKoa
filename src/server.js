@@ -1,11 +1,11 @@
 'use strict'
 
 const Koa = require('koa');
+const Pug = require('koa-pug');
 const routes = require('./routes');
+const serve = require('koa-static');
 
 const app = new Koa();
-
-const Pug = require('koa-pug');
 
 const pug = new Pug({
     viewPath: './views',
@@ -24,8 +24,8 @@ app.use(async (ctx, next) => {
     }
 });
 
+app.use(serve('.'));
 app.use(routes);
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
