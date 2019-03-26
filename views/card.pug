@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    body
+        div(class='container')
+            div(id='sideA')
+                h2 Side A
+                p #{cardData[0].sideA}
+            script.
+                function showHidden() {
+                    document.getElementById('sideB').style.display=('block')
+                    document.getElementById('nextCardLink').style.display=('block')
+                    document.getElementById('sideBbutton').style.display=('none')
+                    }
+                    
+            button(href='#' id='sideBbutton' onclick='showHidden()') Show Side B
+            div(id='sideB')
+                h2 Side B
+                p #{cardData[0].sideB}
+                div 
+            if category
+                a(id='nextCardLink' href='/random/?category=' + category) Get a new card
+            else 
+                a(id='nextCardLink' href='/random/') Get a new card

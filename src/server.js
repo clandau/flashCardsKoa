@@ -4,6 +4,7 @@ const Koa = require('koa');
 const Pug = require('koa-pug');
 const routes = require('./routes');
 const serve = require('koa-static');
+const config = require('./config');
 
 const app = new Koa();
 
