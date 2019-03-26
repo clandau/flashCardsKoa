@@ -1,0 +1,17 @@
+{
+  "name": "flashcardskoa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon */src/server.js"
+  },
+  "author": "cel",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.4.0"
+  }
+}
