@@ -1,11 +1,25 @@
 const Router = require('koa-router');
 const router = new Router();
 const pool = require('./db')
+const koaBody = require('koa-body');
 
 router.get('/', async (ctx) => {
     ctx.status = 200;
     ctx.render('index');
 });
+
+router.get('/all', async (ctx) => {
+    const sql = 'SELECT * FROM card ORDER BY category';
+    try {
+        const data = await pool.query(sql);
+        ctx.status = 200;
+        ctx.body = data;
+    }
+    catch(err) {
+        console.log(err);
+        ctx.throw(400, `${err}`);
+    }
+})
 
 router.get('/random', async (ctx) => {
     let category = ctx.params.category;
@@ -25,7 +39,19 @@ router.get('/random', async (ctx) => {
         console.log(err);
         ctx.throw(400, `${err}`);
     }
+});
 
+router.post('/new', koaBody(), async (ctx) => {
+    console.log(ctx.request.body);
+    let data = ctx.request.body;
+    try {
+        let sql = `INSERT INTO card set ?`;
+        await pool.query(sql, [data]);
+        ctx.render('index', {'message' : 'Sucessfully added new card to database.'});
+    }
+    catch(err) {
+        ctx.throw(400, `post error: ${err}`);
+    }
 });
 
 router.get('/test', async (ctx) => {
