@@ -42,7 +42,6 @@ router.get('/random', async (ctx) => {
 });
 
 router.post('/new', koaBody(), async (ctx) => {
-    console.log(ctx.request.body);
     let data = ctx.request.body;
     try {
         let sql = `INSERT INTO card set ?`;
@@ -52,11 +51,6 @@ router.post('/new', koaBody(), async (ctx) => {
     catch(err) {
         ctx.throw(400, `post error: ${err}`);
     }
-});
-
-router.get('/test', async (ctx) => {
-    ctx.status = 201;
-    ctx.body = 'test';
 });
 
 module.exports = router.routes();
