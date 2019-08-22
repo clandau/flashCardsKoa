@@ -11,11 +11,11 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^7.0.0",
-    "koa": "^2.7.0",
-    "koa-body": "^4.1.0",
+    "koa": "^2.8.1",
+    "koa-body": "^4.1.1",
     "koa-pug": "^3.0.0-2",
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
-    "promise-mysql": "^3.3.1"
+    "promise-mysql": "^3.3.2"
   }
 }
