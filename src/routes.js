@@ -33,7 +33,6 @@ router.get('/random', async (ctx) => {
     try {
         let data = await pool.query(sql, [category]);
         category = data[0].category;
-        console.log(data);
         ctx.render('card', { 'cardData' : data, 'category' : category });
     }
     catch(err) {

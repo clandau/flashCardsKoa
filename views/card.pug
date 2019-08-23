@@ -10,6 +10,7 @@ block content
                 function showHidden() {
                     document.getElementById('sideB').style.display=('block')
                     document.getElementById('nextCardLink').style.display=('block')
+                    document.getElementById('nextCardLink1').style.display=('block')
                     document.getElementById('sideBbutton').style.display=('none')
                     }
                     
@@ -19,6 +20,7 @@ block content
                 p #{cardData[0].sideB}
                 div 
             if category
-                a(id='nextCardLink' href='/random/?category=' + category) Get a new card
+                a(id='nextCardLink' href='/random/?category=' + category) Get a new card in the same category
+                a(id='nextCardLink1' href='/random') Get a new random card
             else 
                 a(id='nextCardLink' href='/random/') Get a new card

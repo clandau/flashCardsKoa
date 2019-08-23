@@ -68,7 +68,7 @@ a {
   color: black
 }
 
-a#nextCardLink {
+a#nextCardLink, a#nextCardLink1 {
   display: none;
 }
 
