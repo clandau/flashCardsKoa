@@ -22,7 +22,7 @@ router.get('/all', async (ctx) => {
 })
 
 router.get('/random', async (ctx) => {
-    let category = ctx.params.category;
+    let category = ctx.request.query.category;
     let sql;
     if(!category) {
         sql = 'SELECT category, sideA, sideB FROM card ORDER BY RAND() LIMIT 1';
@@ -31,8 +31,9 @@ router.get('/random', async (ctx) => {
         sql = 'SELECT category, sideA, sideB FROM card WHERE category=? ORDER BY RAND() LIMIT 1';
     }
     try {
-        let data = await pool.query(sql);
+        let data = await pool.query(sql, [category]);
         category = data[0].category;
+        console.log(data);
         ctx.render('card', { 'cardData' : data, 'category' : category });
     }
     catch(err) {
