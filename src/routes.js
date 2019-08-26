@@ -43,6 +43,10 @@ router.get('/random', async (ctx) => {
 
 router.post('/new', koaBody(), async (ctx) => {
     let data = ctx.request.body;
+    if(data.sideA === '' || data.sideB == '') {
+        console.error('empty data');
+        return await ctx.render('index');
+    }
     try {
         let sql = `INSERT INTO card set ?`;
         await pool.query(sql, [data]);
