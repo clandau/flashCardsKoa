@@ -5,7 +5,7 @@ const koaBody = require('koa-body');
 
 router.get('/', async (ctx) => {
     ctx.status = 200;
-    ctx.render('index');
+    await ctx.render('index');
 });
 
 router.get('/all', async (ctx) => {
@@ -33,7 +33,7 @@ router.get('/random', async (ctx) => {
     try {
         let data = await pool.query(sql, [category]);
         category = data[0].category;
-        ctx.render('card', { 'cardData' : data, 'category' : category });
+        await ctx.render('card', { 'cardData' : data, 'category' : category });
     }
     catch(err) {
         console.log(err);
@@ -46,7 +46,7 @@ router.post('/new', koaBody(), async (ctx) => {
     try {
         let sql = `INSERT INTO card set ?`;
         await pool.query(sql, [data]);
-        ctx.render('index', {'message' : 'Sucessfully added new card to database.'});
+        await ctx.render('index', {'message' : 'Sucessfully added new card to database.'});
     }
     catch(err) {
         ctx.throw(400, `post error: ${err}`);
